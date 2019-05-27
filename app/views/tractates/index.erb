@@ -1,0 +1,9 @@
+<ul>
+<% @tractates.each do |tractate| %>
+  <li>
+    <a href="/tractates/<%= tractate.id %>">
+      <%= tractate.name %>
+    </a>
+  </li>
+<% end %>
+</ul>

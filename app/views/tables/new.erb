@@ -1,0 +1,15 @@
+<h1>Enter or paste your words here:</h1>
+
+
+<form class="" action="/tables" method="post">
+  <label>Title</label>
+  <input type="text" name="title" value=""><br>
+  <textarea name="section" rows="8" cols="80"></textarea><br>
+  Select a tractate
+  <select name ="tractate">
+    <% Tractate.all.each do |tractate| %>
+    <option value="<%= tractate.name %>"><%= tractate.name%></option>
+    <% end %>
+  </select><br>
+  <input type="submit" name="" value="Create Table">
+</form>

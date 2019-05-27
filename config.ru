@@ -7,4 +7,8 @@ if ActiveRecord::Base.connection.migration_context.needs_migration?
 end
 
 use Rack::MethodOverride
+use SessionsController
+use TablesController
+use TractatesController
+use UsersController
 run ApplicationController

@@ -1,0 +1,19 @@
+<h1><%= @table.title %></h1>
+<h2><%= @table.tractate.name %></h2>
+
+<table>
+  <tr>
+    <th>Hebrew</th>
+    <th>Translation 1</th>
+    <th>Translation 2</th>
+    <th>Translation 3</th>
+  </tr>
+  <% @table.words.each do |word| %>
+  <tr>
+    <td><%= word.hebrew %></td>
+    <td><%= word.translation_one %></td>
+    <td><%= word.translation_two %></td>
+    <td><%= word.translation_three %></td>
+  </tr>
+    <% end %>
+<table>
