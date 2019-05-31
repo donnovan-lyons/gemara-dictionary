@@ -14,11 +14,12 @@
     <td><%= word.translation_one %></td>
     <td><%= word.translation_two %></td>
     <td><%= word.translation_three %></td>
+
   </tr>
     <% end %>
 <table>
 <a href="<%= @table.slug %>/edit">Edit</a><br>
-<form class="" action="<%= @table.slug %>" method="post">
+<form class="" action="/tables/<%= @table.slug %>" method="post">
   <input type="hidden" id="hidden" name="_method" value="delete">
   <input type="submit" value="Delete">
 </form><br>

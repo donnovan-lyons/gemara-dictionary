@@ -7,7 +7,7 @@
   <textarea name="section" rows="8" cols="80"></textarea><br>
   Select a tractate
   <select name ="tractate">
-    <% Tractate.all.each do |tractate| %>
+    <% Tractate.all.sort_by {|tractate| tractate.name}.each do |tractate| %>
     <option value="<%= tractate.name %>"><%= tractate.name%></option>
     <% end %>
   </select><br>

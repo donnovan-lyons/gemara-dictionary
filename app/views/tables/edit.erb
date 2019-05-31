@@ -1,7 +1,7 @@
 <h1><%= @table.title %></h1>
 <h2><%= @table.tractate.name %></h2>
 
-<form class="" action="/users/:id/tables/<%= @table.slug %>" method="POST">
+<form class="" action="/users/<%= current_user.id %>/tables/<%= @table.slug %>" method="POST">
   <input id="hidden" type="hidden" name="_method" value="patch">
   <table>
     <tr>
@@ -16,6 +16,10 @@
       <td><input type="text" name="translation_one_<%= word.id %>" value="<%= word.translation_one %>"></td>
       <td><input type="text" name="translation_two_<%= word.id %>" value="<%= word.translation_two %>"></td>
       <td><input type="text" name="translation_three_<%= word.id %>" value="<%= word.translation_three %>"></td>
+      <td><form action="#" method="POST">
+        <input type="hidden" id="hidden" name="_method" value="delete">
+        <input type="submit" value="Delete">
+      </form></td>
     </tr>
       <% end %>
   <table>

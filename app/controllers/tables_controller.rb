@@ -38,5 +38,14 @@ class TablesController < ApplicationController
     end
   end
 
+  delete "/tables/:slug" do
+    table = Table.find_by_slug(params[:slug])
+    table.delete_words
+    table.delete
+    redirect "/users/:id/tables"
+  end
+
+
+
 
 end

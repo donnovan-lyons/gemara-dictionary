@@ -10,4 +10,14 @@ class Table < ActiveRecord::Base
   def self.find_by_slug(slug)
     all.find {|table| table.slug == slug}
   end
+
+  def delete_words
+    self.words.each do |word|
+      word.delete
+    end
+  end
+
+  def delete_word(word)
+    self.words.delete(word)
+  end
 end
