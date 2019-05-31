@@ -1,19 +1,23 @@
 <h1><%= @table.title %></h1>
 <h2><%= @table.tractate.name %></h2>
 
-<table>
-  <tr>
-    <th>Hebrew</th>
-    <th>Translation 1</th>
-    <th>Translation 2</th>
-    <th>Translation 3</th>
-  </tr>
-  <% @table.words.each do |word| %>
-  <tr>
-    <td><input type="text" name="hebrew" value="<%= word.hebrew %>"></td>
-    <td><input type="text" name="translation_one" value="<%= word.translation_one %>"></td>
-    <td><input type="text" name="translation_two" value="<%= word.translation_two %>"></td>
-    <td><input type="text" name="translation_three" value="<%= word.translation_three %>"></td>
-  </tr>
-    <% end %>
-<table>
+<form class="" action="/users/:id/tables/<%= @table.slug %>" method="POST">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+  <table>
+    <tr>
+      <th>Hebrew</th>
+      <th>Translation 1</th>
+      <th>Translation 2</th>
+      <th>Translation 3</th>
+    </tr>
+    <% @table.words.each do |word| %>
+    <tr>
+      <td><input type="text" name="hebrew_<%= word.id %>" value="<%= word.hebrew %>"></td>
+      <td><input type="text" name="translation_one_<%= word.id %>" value="<%= word.translation_one %>"></td>
+      <td><input type="text" name="translation_two_<%= word.id %>" value="<%= word.translation_two %>"></td>
+      <td><input type="text" name="translation_three_<%= word.id %>" value="<%= word.translation_three %>"></td>
+    </tr>
+      <% end %>
+  <table>
+  <input type="submit" value="Save">
+</form>

@@ -6,6 +6,5 @@ class User < ActiveRecord::Base
   has_secure_password
   has_many :tables
   has_many :words, through: :tables
-  has_many :user_tractates
-  has_many :tractates, through: :user_tractates
+  has_many :tractates, through: :tables
 end

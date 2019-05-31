@@ -1,16 +1,29 @@
 class SessionsController < ApplicationController
 
   get '/login' do
-    erb :"/sessions/login"
+    if logged_in?
+      redirect "/users/#{current_user.id}"
+    else
+      erb :"/sessions/login"
+    end
   end
 
   get '/signup' do
-    erb :"/sessions/signup"
+    if logged_in?
+      redirect "/users/#{current_user.id}"
+    else
+      erb :"/sessions/signup"
+    end
   end
 
   post '/login' do
-    @user = User.find_by(username: @user.username)
-    redirect "user/#{@user.id}/home"
+    @user = User.find_by(username: params[:username])
+    if @user && @user.authenticate(params[:password])
+	    session[:user_id] = @user.id
+	    redirect "/users/#{@user.id}"
+	  else
+	    redirect "/failure"
+	  end
   end
 
   post '/sessions' do
@@ -19,7 +32,6 @@ class SessionsController < ApplicationController
   end
 
   post "/signup" do
-    # binding.pry
     user = User.new(username: params[:username], password: params[:password], password_confirmation: params[:password_confirmation])
     if user.save
       redirect "/login"
@@ -38,14 +50,6 @@ class SessionsController < ApplicationController
     redirect "/"
   end
 
-  helpers do
-    def logged_in?
-      !!session[:user_id]
-    end
 
-    def current_user
-      User.find(session[:user_id])
-    end
-  end
 
 end

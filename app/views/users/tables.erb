@@ -1,0 +1,9 @@
+<h1>Tables</h1>
+
+<ul>
+<% current_user.tables.each do |table| %>
+  <li>
+    <a href="tables/<%= table.slug %>"><%= table.title %></a>
+  </li>
+<% end %>
+</ul>

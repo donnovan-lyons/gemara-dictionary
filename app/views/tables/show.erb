@@ -1,7 +1,7 @@
 <h1><%= @table.title %></h1>
 <h2><%= @table.tractate.name %></h2>
 
-<table>
+<table class="table-bordered" id="gemara-table">
   <tr>
     <th>Hebrew</th>
     <th>Translation 1</th>
@@ -17,3 +17,11 @@
   </tr>
     <% end %>
 <table>
+<a href="<%= @table.slug %>/edit">Edit</a><br>
+<form class="" action="<%= @table.slug %>" method="post">
+  <input type="hidden" id="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete">
+</form><br>
+<button id="csvExport"> Export to CSV </button>
+<button id="xlsExport" onClick="fnExcelReport()">Export to Excel</button>
+<script type="text/javascript" src="/js/index.js"></script>

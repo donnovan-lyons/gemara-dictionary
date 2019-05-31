@@ -1,4 +1,10 @@
-<%= @user.username %>
-
-<a href="/tables/new">Create Table</a>
-<a href="/user/:id/tables">Review Table</a>
+<h1>Hi, <%=current_user.username %></h1>
+<div class="">
+  <a href="/users/<%= current_user.id %>/tables/new">Create Table</a>
+</div>
+<div class="">
+  <a href="/users/<%= current_user.id %>/tables">Review Tables</a>
+</div>
+<div class="">
+  <a href="/users/<%= current_user.id %>/tractates">Review Tractates</a>
+</div>
