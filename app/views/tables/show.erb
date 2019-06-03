@@ -1,3 +1,7 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
 <h1><%= @table.title %></h1>
 <h2><%= @table.tractate.name %></h2>
 
@@ -14,15 +18,11 @@
     <td><%= word.translation_one %></td>
     <td><%= word.translation_two %></td>
     <td><%= word.translation_three %></td>
-
   </tr>
     <% end %>
 <table>
 <a href="<%= @table.slug %>/edit">Edit</a><br>
-<form class="" action="/tables/<%= @table.slug %>" method="post">
-  <input type="hidden" id="hidden" name="_method" value="delete">
-  <input type="submit" value="Delete">
-</form><br>
+<a href="<%= @table.slug %>/delete">Delete</a><br>
 <button id="csvExport"> Export to CSV </button>
 <button id="xlsExport" onClick="fnExcelReport()">Export to Excel</button>
 <script type="text/javascript" src="/js/index.js"></script>

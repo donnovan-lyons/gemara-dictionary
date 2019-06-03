@@ -2,14 +2,15 @@
   <%= flash[:message] %>
 <% end %>
 
-<h1>Signup</h1>
+<h1>Edit Account</h1>
 
-<form class="" action="/signup" method="post">
+<form action="/users/<%= current_user.id %>/account" method="post">
+  <input id="hidden" type="hidden" name="_method" value="patch">
   <label for="">Username</label>
-  <input type="text" name="username" value=""><br>
+  <input type="text" name="username" value="<%= current_user.username %>"><br>
   <label for="">Password</label>
   <input type="password" name="password" value=""><br>
   <label for="">Confirm Password</label>
   <input type="password" name="password_confirmation" value=""><br>
-  <input type="submit" name="" value="Submit">
+  <input type="submit" value="Update">
 </form>

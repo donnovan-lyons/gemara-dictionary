@@ -1,7 +1,11 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
 <h1>Enter or paste your words here:</h1>
 
 
-<form class="" action="/users/:id/tables/:slug" method="post">
+<form class="" action="/users/<%= current_user.id %>/tables/<%= Table.all.count + 1 %>" method="post">
   <label>Title</label>
   <input type="text" name="title" value=""><br>
   <textarea name="section" rows="8" cols="80"></textarea><br>
@@ -11,5 +15,5 @@
     <option value="<%= tractate.name %>"><%= tractate.name%></option>
     <% end %>
   </select><br>
-  <input type="submit" name="" value="Create Table">
+  <input type="submit" value="Create Table">
 </form>

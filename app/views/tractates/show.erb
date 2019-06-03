@@ -1,0 +1,7 @@
+<% if @tractate.users.count == 0 %>
+  No users are studying this tractate.
+<% elsif @tractate.users.count == 1 %>
+<%= @tractate.users[0].username %> is studying this tractate.
+<% else %>
+The users, <%= @tractate.users.map {|user| user.username}.join(", ") %> are studying this tractate.
+<% end %>

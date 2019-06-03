@@ -1,0 +1,19 @@
+<p>Are you sure you would like to delete this word from your table?</p>
+
+Hebrew: <%= @word.hebrew %><br>
+Translation 1:<%= @word.translation_one %><br>
+<% if @word.translation_two != nil %>
+ Translation 2: <%= @word.translation_two %><br>
+<% end %>
+<% if @word.translation_three != nil %>
+ Translation 3: <%= @word.translation_three %><br>
+<% end %>
+
+<form action="/tables/<%= @table.slug %>/words/<%= @word.id %>" id ="word-yes" method="POST" >
+  <input type="hidden" id="hidden" name="_method" value="delete">
+  <input type="submit" form="word-yes" value="Yes">
+</form>
+
+<form action="/users/<%= current_user.id %>/tables/<%= @table.slug %>/edit" method="get" id="word-no">
+  <input type="submit" form="word-no" value="No">
+</form>

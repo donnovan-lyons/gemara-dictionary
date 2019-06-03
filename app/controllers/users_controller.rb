@@ -16,10 +16,29 @@ class UsersController < ApplicationController
 		end
   end
 
+  get "/users/:id/account" do
+    if logged_in?
+      erb :"/users/account"
+    else
+      redirect "/failure"
+    end
+  end
+
+  patch "/users/:id/account" do
+    if logged_in?
+      @user = User.find(params[:id])
+      @user.update(username: params[:username], password: params[:password], password_confirmation: params[:password_confirmation])
+      erb :"/users/account"
+    else
+      redirect "/failure"
+    end
+  end
+
   post "/users/:id/tables" do
     if logged_in?
       words = Word.parse(params[:section])
       @table = Table.create(title: params[:title], tractate: Tractate.find_by(name: params[:tractate]), words: words, user_id: session[:user_id])
+      flash[:message] = "Table successfully created."
       erb :'tables/show'
     else
       redirect "/failure"
@@ -47,6 +66,7 @@ class UsersController < ApplicationController
     if logged_in?
       words = Word.parse(params[:section])
       @table = Table.create(title: params[:title], tractate: Tractate.find_by(name: params[:tractate]), words: words, user_id: session[:user_id])
+      flash[:message] = "Table successfully created."
       erb :'/tables/show'
     else
       redirect "/failure"
@@ -68,6 +88,7 @@ class UsersController < ApplicationController
       @table.words.each do |word|
         word.update(hebrew: params["hebrew_" + "#{word.id}"], translation_one: params["translation_one_" + "#{word.id}"], translation_two: params["translation_two_" + "#{word.id}"], translation_three: params["translation_three_" + "#{word.id}"])
       end
+      flash[:message] = "Saved."
 			erb :"/tables/show"
 		else
 			redirect "/failure"
@@ -82,4 +103,18 @@ class UsersController < ApplicationController
 		end
   end
 
+  get "/users/:id/tables/:slug/delete" do
+    @table = Table.find_by_slug(params[:slug])
+    erb :"/tables/delete_confirmation"
+  end
+
+
+ get '/users/:id/tractates/:slug' do
+   if logged_in?
+     @tractate = Tractate.find_by_slug(params[:slug])
+     erb :"/users/tractates_show"
+   else
+    redirect "/failure"
+  end
+ end
 end
