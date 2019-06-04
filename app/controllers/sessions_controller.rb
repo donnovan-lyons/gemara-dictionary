@@ -25,7 +25,7 @@ class SessionsController < ApplicationController
       flash[:message] = "Login successful."
 	    redirect "/users/#{@user.id}"
 	  else
-	    redirect "/failure"
+	    erb :'/sessions/failure'
 	  end
   end
 
@@ -35,13 +35,8 @@ class SessionsController < ApplicationController
       flash[:message] = "Signup successful. Please login to continue."
       redirect "/login"
     else
-      redirect "/failure"
+      erb :'/sessions/failure'
     end
-  end
-
-
-  get "/failure" do
-    erb :'/sessions/failure'
   end
 
   get "/logout" do
