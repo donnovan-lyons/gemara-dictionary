@@ -7,10 +7,15 @@
 <form action="/users/<%= current_user.id %>/account" method="post">
   <input id="hidden" type="hidden" name="_method" value="patch">
   <label for="">Username</label>
-  <input type="text" name="username" value="<%= current_user.username %>"><br>
+  <input type="text" name="username" value="<%= current_user.username %>"><br><br>
+  <p>Change Password</p>
   <label for="">Password</label>
   <input type="password" name="password" value=""><br>
   <label for="">Confirm Password</label>
   <input type="password" name="password_confirmation" value=""><br>
   <input type="submit" value="Update">
+</form>
+
+<form action="/users/<%= current_user.id %>/account/delete" method="get">
+  <input type="submit" value="Delete Account">
 </form>

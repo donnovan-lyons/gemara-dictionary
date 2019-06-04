@@ -177,4 +177,34 @@ class UsersController < ApplicationController
   end
  end
 
+ get "/users/:id/account/delete" do
+   user = User.find(params[:id])
+   if logged_in?
+     if authorized?(user.id)
+       erb :'/users/delete_confirmation'
+     else
+       erb :'/sessions/authorization'
+     end
+   else
+     erb :'/sessions/failure'
+   end
+ end
+
+   delete "/users/:id/account" do
+     user = User.find(params[:id])
+     if logged_in?
+       if authorized?(user.id)
+         user.delete_all_words_and_tables
+         user.delete
+         session.clear
+         flash[:message] = "User account successfully deleted."
+         redirect "/"
+       else
+         erb :'/sessions/authorization'
+       end
+     else
+       erb :'/sessions/failure'
+     end
+   end
+
 end

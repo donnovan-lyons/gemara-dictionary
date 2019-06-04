@@ -1,0 +1,10 @@
+<p>Are you sure you would like to delete your account?</p>
+
+<form action="/users/<%= current_user.id %>/account" id ="delete-account" method="POST" >
+  <input type="hidden" id="hidden" name="_method" value="delete">
+  <input type="submit" form="delete-account" value="Yes">
+</form>
+
+<form action="/users/<%= current_user.id %>/account" method="get" id="no-delete-account">
+  <input type="submit" form="no-delete-account" value="No">
+</form>

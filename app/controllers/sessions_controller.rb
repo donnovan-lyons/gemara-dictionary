@@ -35,7 +35,8 @@ class SessionsController < ApplicationController
       flash[:message] = "Signup successful. Please login to continue."
       redirect "/login"
     else
-      erb :'/sessions/failure'
+      flash[:message] = "Signup not successful. Please try a unique username and ensure that both passwords entered are the same."
+      redirect "/signup"
     end
   end
 

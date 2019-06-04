@@ -7,4 +7,11 @@ class User < ActiveRecord::Base
   has_many :tables
   has_many :words, through: :tables
   has_many :tractates, through: :tables
+
+  def delete_all_words_and_tables
+    self.tables.each do |table|
+      table.delete_words
+      table.delete
+    end
+  end
 end
