@@ -91,7 +91,7 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     if logged_in?
       if authorized?(user.id)
-        words = Word.parse(params[:section])
+        words = Word.parse(params[:section], user)
         @table = Table.create(title: params[:title], tractate: Tractate.find_by(name: params[:tractate]), words: words, user_id: session[:user_id])
         flash[:message] = "Table successfully created."
         erb :'/tables/show'
