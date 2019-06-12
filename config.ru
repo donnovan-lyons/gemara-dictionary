@@ -11,4 +11,5 @@ use SessionsController
 use TablesController
 use TractatesController
 use UsersController
+use WordsController
 run ApplicationController

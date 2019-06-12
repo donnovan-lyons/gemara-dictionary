@@ -1,14 +1,12 @@
 class Word < ActiveRecord::Base
   belongs_to :table
 
-  def self.parse(string, current_user)
-    # array = []
+  def self.parse(string, user)
     words = string.split(" ").uniq
-    words.map! do |word|
-      if current_user.words.none? {|w| w.hebrew == word}
-        Word.create(hebrew: word)
-      end
-    end
+    hebrew_words = user.words.map {|word| word.hebrew}
+    words.reject! {|w| hebrew_words.include?(w) }
+    words.map! {|word| Word.create(hebrew: word)}
+    words
   end
 
 end

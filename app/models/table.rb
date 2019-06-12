@@ -20,4 +20,8 @@ class Table < ActiveRecord::Base
   def delete_word(word)
     self.words.delete(word)
   end
+
+  def self.unique_slug?(slug, user)
+    !user.tables.map {|table| table.slug }.include?(slug)
+  end
 end

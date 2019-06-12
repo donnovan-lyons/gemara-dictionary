@@ -5,7 +5,7 @@
 <h1>Enter or paste your words here:</h1>
 
 
-<form class="" action="/users/<%= current_user.id %>/tables/<%= Table.all.count + 1 %>" method="post">
+<form class="" action="/users/<%= current_user.id %>/tables" method="post">
   <label>Title</label>
   <input type="text" name="title" value=""><br>
   <textarea name="section" rows="8" cols="80"></textarea><br>

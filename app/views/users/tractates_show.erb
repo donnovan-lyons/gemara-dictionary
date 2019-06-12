@@ -3,7 +3,7 @@
 <ul>
 <% @tractate.tables.each do |table| %>
   <li>
-    <a href="/users/<%= current_user.id %>/tables/<%= table.slug %>"><%= table.title %></a>
+    <a href="/users/<%= @user.id %>/tables/<%= table.slug %>"><%= table.title %></a>
   </li>
 <% end %>
 </ul>

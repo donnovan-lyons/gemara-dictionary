@@ -30,12 +30,13 @@ class SessionsController < ApplicationController
   end
 
   post "/signup" do
-    user = User.new(username: params[:username], password: params[:password], password_confirmation: params[:password_confirmation])
-    if user.save
-      flash[:message] = "Signup successful. Please login to continue."
-      redirect "/login"
+    @user = User.new(username: params[:username], password: params[:password], password_confirmation: params[:password_confirmation])
+    if @user.save
+      session[:user_id] = @user.id
+      flash[:message] = "Login successful."
+      redirect "/users/#{@user.id}"
     else
-      flash[:message] = "Signup not successful. Please try a unique username and ensure that both passwords entered are the same."
+      flash[:message] = "Signup not successful. Please try a unique username and ensure that both passwords fields are correctly filled out."
       redirect "/signup"
     end
   end

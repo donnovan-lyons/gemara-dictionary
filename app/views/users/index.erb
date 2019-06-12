@@ -2,13 +2,13 @@
   <%= flash[:message] %>
 <% end %>
 
-<h1>Hi, <%=current_user.username %></h1>
-<div class="">
-  <a href="/users/<%= current_user.id %>/tables/new">Create Table</a>
+<h1>Hi, <%=@user.username %></h1>
+<div>
+  <a href="/users/<%= @user.id %>/tables/new">Create Table</a>
 </div>
 <div class="">
-  <a href="/users/<%= current_user.id %>/tables">Review Tables</a>
+  <a href="/users/<%= @user.id %>/tables">Review Tables</a>
 </div>
 <div class="">
-  <a href="/users/<%= current_user.id %>/tractates">Review Tractates</a>
+  <a href="/users/<%= @user.id %>/tractates">Review Tractates</a>
 </div>

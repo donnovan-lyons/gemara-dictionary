@@ -5,9 +5,11 @@
 <h1>My Tables</h1>
 
 <ul>
-<% current_user.tables.each do |table| %>
+<% @user.tables.each do |table| %>
   <li>
     <a href="tables/<%= table.slug %>"><%= table.title %></a>
   </li>
 <% end %>
 </ul>
+
+<a href="/users/<%= @user.id %>/tables/new">Create Table</a>
