@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2019_05_27_140634) do
     t.string "title"
     t.integer "user_id"
     t.integer "tractate_id"
+    t.boolean "public", default: false
   end
 
   create_table "tractates", force: :cascade do |t|

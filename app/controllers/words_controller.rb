@@ -1,7 +1,7 @@
 class WordsController < ApplicationController
 
   get "/tables/:slug/words/:id/delete" do
-    @table = Table.find_by_slug(params[:slug])
+    @table = Table.find_by_slug(params[:slug], current_user)
     @word = Word.find(params[:id])
     if logged_in?
       if authorized?(@table.user_id)
@@ -15,10 +15,9 @@ class WordsController < ApplicationController
   end
 
   delete "/tables/:slug/words/:id" do
-    @table = Table.find_by_slug(params[:slug])
+    @table = Table.find_by_slug(params[:slug], current_user)
     if logged_in?
       if authorized?(@table.user_id)
-        @table = Table.find_by_slug(params[:slug])
         word = Word.find(params[:id])
         @table.delete_word(word)
         flash[:message] = "#{word.hebrew} deleted. "
@@ -30,5 +29,5 @@ class WordsController < ApplicationController
       erb :'/sessions/failure'
     end
   end
-  
+
 end

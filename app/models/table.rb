@@ -7,8 +7,8 @@ class Table < ActiveRecord::Base
     self.title.gsub(" ","-").downcase
   end
 
-  def self.find_by_slug(slug)
-    all.find {|table| table.slug == slug}
+  def self.find_by_slug(slug, user)
+    all.find {|table| table.slug == slug && table.user_id == user.id}
   end
 
   def delete_words
@@ -23,5 +23,9 @@ class Table < ActiveRecord::Base
 
   def self.unique_slug?(slug, user)
     !user.tables.map {|table| table.slug }.include?(slug)
+  end
+
+  def self.public_tables
+    all.select {|table| table.public == true}
   end
 end

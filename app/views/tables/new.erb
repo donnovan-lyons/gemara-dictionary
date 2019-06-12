@@ -9,6 +9,7 @@
   <label>Title</label>
   <input type="text" name="title" value=""><br>
   <textarea name="section" rows="8" cols="80"></textarea><br>
+  Public: <input type="checkbox" name="public"><br>
   Select a tractate
   <select name ="tractate">
     <% Tractate.all.sort_by {|tractate| tractate.name}.each do |tractate| %>

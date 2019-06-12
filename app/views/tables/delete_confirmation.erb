@@ -1,6 +1,6 @@
 Are you sure you want to delete <%= @table.tractate.name %>: <%= @table.title%>?
 
-<form action="/tables/<%= @table.slug %>" id ="table-yes" method="POST" >
+<form action="/users/<%= @user.id %>/tables/<%= @table.slug %>" id ="table-yes" method="POST" >
   <input type="hidden" id="hidden" name="_method" value="delete">
   <input type="submit" form="table-yes" value="Yes">
 </form>

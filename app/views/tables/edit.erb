@@ -24,5 +24,6 @@
     </tr>
       <% end %>
   </table>
+  Public: <input type="checkbox" name="public" <%='checked' if @table.public == true %>><br>
   <input type="submit" form="save-form" value="Save">
 </form>
