@@ -22,19 +22,6 @@ class TablesController < ApplicationController
   		end
     end
 
-    get "/users/:id/tables" do
-      @user = User.find(params[:id])
-      if logged_in?
-        if authorized?(@user.id)
-          erb :'users/tables'
-        else
-          erb :'/sessions/authorization'
-        end
-      else
-        erb :'/sessions/failure'
-      end
-    end
-
   get "/users/:id/tables/new" do
     if logged_in?
 			erb :'tables/new'
@@ -51,7 +38,7 @@ class TablesController < ApplicationController
           if Table.unique_slug?(params[:title], @user)
             @table = Table.create(title: params[:title], tractate: Tractate.find_by(name: params[:tractate]), words: words, user_id: session[:user_id])
             flash[:message] = "Table successfully created."
-            erb :'tables/show'
+            redirect "/users/#{@user.id}/tables/#{@table.slug}"
           else
             flash[:message] = "Please create a unique title for your table."
             redirect "/users/#{@user.id}/tables/new"
