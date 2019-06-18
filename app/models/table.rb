@@ -4,7 +4,6 @@ class Table < ActiveRecord::Base
   has_many :words
 
   def slug
-    # self.title.gsub(" ","-").downcase
     "#{self.title.gsub(" ","-").downcase}-#{self.user_id}"
   end
 

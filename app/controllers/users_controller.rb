@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if logged_in?
       if authorized?(@user.id)
-        erb :'/users/index'
+        erb :'/users/show'
       else
         erb :'sessions/authorization'
       end

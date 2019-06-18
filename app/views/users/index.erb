@@ -3,6 +3,7 @@
 <% end %>
 
 <h1>Hi, <%=@user.username %></h1>
+<h3>You have translated <%= @user.words_translated %> words.</h3>
 <div>
   <a href="/users/<%= @user.id %>/tables/new">Create Table</a>
 </div>

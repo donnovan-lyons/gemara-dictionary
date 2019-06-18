@@ -9,4 +9,9 @@ class Word < ActiveRecord::Base
     words
   end
 
+  def translation_present?
+    array = [self.translation_one, self.translation_two, self.translation_three]
+    array.any? {|word| word != "" && word != nil }
+  end
+
 end

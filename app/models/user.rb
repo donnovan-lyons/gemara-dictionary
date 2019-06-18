@@ -12,4 +12,9 @@ class User < ActiveRecord::Base
       table.delete
     end
   end
+
+  def words_translated
+    self.words.count {|word| word.translation_present?}
+  end
+
 end

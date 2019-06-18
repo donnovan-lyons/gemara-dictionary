@@ -2,13 +2,14 @@
   <%= flash[:message] %>
 <% end %>
 
-<h1>Hi, <%= @user.username %></h1>
-<form action="#" method="post">
-  <label for="">Username</label>
-  <input type="text" name="username" value="<%= @user.username %>"><br>
-  <label for="">Password</label>
-  <input type="password" name="password"><br>
-  <label for="">Confirm Password</label>
-  <input type="password" name="password_confirmation" value=""><br>
-  <input type="submit" name="" value="Save">
-</form>
+<h1>Hi, <%=@user.username %></h1>
+<h3>You have translated <%= @user.words_translated %> words.</h3>
+<div>
+  <a href="/users/<%= @user.id %>/tables/new">Create Table</a>
+</div>
+<div class="">
+  <a href="/users/<%= @user.id %>/tables">Review Tables</a>
+</div>
+<div class="">
+  <a href="/users/<%= @user.id %>/tractates">Review Tractates</a>
+</div>
