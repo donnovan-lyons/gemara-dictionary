@@ -4,9 +4,9 @@ class TablesController < ApplicationController
     erb :'/tables/index'
   end
 
-  get "/tables/:id" do
+  get "/tables/:slug" do
     #Consider switching to slug for consistency and changing slug method to add on id.
-    @table = Table.find(params[:id])
+    @table = Table.find_by_slug(params[:slug])
     if @table.public == true
       erb :'/tables/public_show'
     else
@@ -29,10 +29,10 @@ class TablesController < ApplicationController
 
   get "/users/:id/tables/new" do
     if logged_in?
-			erb :'tables/new'
-		else
-			erb :'/sessions/failure'
-		end
+      erb :'tables/new'
+    else
+      erb :'/sessions/failure'
+    end
   end
 
     post "/users/:id/tables" do
@@ -40,9 +40,9 @@ class TablesController < ApplicationController
       if logged_in?
         if authorized?(@user.id)
           words = Word.parse(params[:section], @user)
-          if Table.unique_slug?(params[:title], @user)
-            @table = Table.create(title: params[:title], tractate: Tractate.find_by(name: params[:tractate]), words: words, user_id: session[:user_id])
-            params[:public] ? @table.public = true : @table
+          @table = Table.new(title: params[:title], tractate: Tractate.find_by(name: params[:tractate]), words: words, user_id: session[:user_id])
+          params[:public] ? @table.public = true : @table
+          if Table.unique_slug?(@table.slug, @user)
             @table.save
             flash[:message] = "Table successfully created."
             redirect "/users/#{@user.id}/tables/#{@table.slug}"
@@ -62,7 +62,7 @@ class TablesController < ApplicationController
     @user = User.find(params[:id])
     if logged_in?
       if authorized?(@user.id)
-        @table = Table.find_by_slug(params[:slug], @user)
+        @table = Table.find_by_slug(params[:slug])
   			erb :"/tables/show"
       else
         erb :'/sessions/authorization'
@@ -76,7 +76,7 @@ class TablesController < ApplicationController
     @user = User.find(params[:id])
     if logged_in?
       if authorized?(@user.id)
-        @table = Table.find_by_slug(params[:slug], @user)
+        @table = Table.find_by_slug(params[:slug])
   			erb :"/tables/edit"
       else
         erb :'/sessions/authorization'
@@ -90,7 +90,8 @@ class TablesController < ApplicationController
     @user = User.find(params[:id])
     if logged_in?
       if authorized?(@user.id)
-        @table = Table.find_by_slug(params[:slug], @user)
+        @table = Table.find_by_slug(params[:slug])
+        @table.update(title: params[:title], tractate: Tractate.find_by(name: params[:tractate]))
         @table.words.each do |word|
           word.update(hebrew: params["hebrew_" + "#{word.id}"], translation_one: params["translation_one_" + "#{word.id}"], translation_two: params["translation_two_" + "#{word.id}"], translation_three: params["translation_three_" + "#{word.id}"])
         end
@@ -110,7 +111,7 @@ class TablesController < ApplicationController
     @user = User.find(params[:id])
     if logged_in?
       if authorized?(@user.id)
-        @table = Table.find_by_slug(params[:slug], @user)
+        @table = Table.find_by_slug(params[:slug])
         erb :"/tables/delete_confirmation"
       else
         erb :'/sessions/authorization'
@@ -121,7 +122,7 @@ class TablesController < ApplicationController
   end
 
   delete "/users/:id/tables/:slug" do
-    table = Table.find_by_slug(params[:slug], current_user)
+    table = Table.find_by_slug(params[:slug])
     if logged_in?
       if authorized?(table.user_id)
         table.delete_words

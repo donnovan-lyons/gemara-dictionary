@@ -1,5 +1,7 @@
 <h1><%= @table.title %></h1>
+<% if @table.tractate %>
 <h2><%= @table.tractate.name %></h2>
+<% end %>
 
 <table class="table-bordered" id="gemara-table">
   <tr>

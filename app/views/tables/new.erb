@@ -12,8 +12,9 @@
   Public: <input type="checkbox" name="public"><br>
   Select a tractate
   <select name ="tractate">
+    <option value="nil" selected></option>
     <% Tractate.all.sort_by {|tractate| tractate.name}.each do |tractate| %>
-    <option value="<%= tractate.name %>"><%= tractate.name%></option>
+    <option value="<%= tractate.name %>" ><%= tractate.name%></option>
     <% end %>
   </select><br>
   <input type="submit" value="Create Table">

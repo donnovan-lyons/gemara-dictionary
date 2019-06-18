@@ -3,7 +3,7 @@
 <ul>
 <% tables.each do |table| %>
   <li>
-    <a href="/tables/<%= table.id %>">
+    <a href="/tables/<%= table.slug %>">
       <%= table.tractate.name %>: <%= table.title %>
     </a>
   </li>
