@@ -5,7 +5,6 @@ class TablesController < ApplicationController
   end
 
   get "/tables/:slug" do
-    #Consider switching to slug for consistency and changing slug method to add on id.
     @table = Table.find_by_slug(params[:slug])
     if @table.public == true
       erb :'/tables/public_show'

@@ -1,0 +1,25 @@
+<% if !@words.empty? %>
+<h1>Translations found for <%= @word %></h1>
+  <% @words.each do |word| %>
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Found in Table: <%= word.table.title %></h5>
+      <h6 class="card-subtitle mb-2 text-muted">Tractate: <%= word.table.tractate.name %></h6>
+      <p class="card-text">Translated as:
+        <% if !word.translation_one.empty? %>
+          1. <%= word.translation_one %>
+        <% end %>
+        <% if !word.translation_two.empty? %>
+        , 2. <%= word.translation_two %>
+        <% end %>
+        <% if !word.translation_three.empty? %>
+        , 3. <%= word.translation_three %>
+        <% end %></p>
+      <a href="#" class="card-link">Table</a>
+      <a href="#" class="card-link">Tractate</a>
+    </div>
+  </div>
+  <% end %>
+<% else %>
+ No translations found for this word.
+<% end %>

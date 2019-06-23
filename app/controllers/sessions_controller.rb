@@ -9,6 +9,14 @@ class SessionsController < ApplicationController
     end
   end
 
+  get '/home' do
+    if logged_in?
+      redirect "/users/#{current_user.id}"
+    else
+      erb :'/sessions/failure'
+    end
+  end
+
   get '/signup' do
     if logged_in?
       flash[:message] = "You are already logged in."

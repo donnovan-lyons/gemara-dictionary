@@ -1,5 +1,11 @@
 class WordsController < ApplicationController
 
+  get "/wordsearch" do
+    @word = params[:query]
+    @words = Word.all.select {|word| word.hebrew == @word && word.translation_present?}
+    erb :'/words/show'
+  end
+
   get "/tables/:slug/words/:id/delete" do
     @table = Table.find_by_slug(params[:slug])
     @word = Word.find(params[:id])

@@ -9,10 +9,12 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
+    #Need to learn how to set session_secret
     set :session_secret, "changeme"
   end
 
   get "/" do
+    #To be modified
     if logged_in?
       redirect "/users/#{current_user.id}"
     else
