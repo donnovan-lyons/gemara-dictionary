@@ -31,11 +31,11 @@ class UsersController < ApplicationController
     if logged_in?
       if authorized?(@user.id)
         @user = User.find(params[:id])
-        if @user.update(username: params[:username], password: params[:password], password_confirmation: params[:password_confirmation])
+        if @user.update(username: params[:username], email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
           flash[:message] = "Account updated."
           redirect "/users/#{@user.id}/account"
         else
-          flash[:message] = "Account updated failed. Please try a unique username and ensure that both passwords fields are correctly filled out."
+          flash[:message] = "Account updated failed. Please try a unique username and proper email and ensure that both passwords fields are correctly filled out."
           redirect "/users/#{@user.id}/account"
         end
       else
