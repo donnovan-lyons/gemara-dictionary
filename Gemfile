@@ -9,11 +9,14 @@ gem 'require_all'
 gem 'bcrypt'
 gem 'rack-flash3'
 gem 'rb-readline'
-gem 'pg'
 
 
 group :test, :development do
-  # gem 'sqlite3'
+  gem 'sqlite3'
   gem 'shotgun'
   gem 'pry'
+end
+
+group :production do
+  gem 'pg'
 end
