@@ -6,7 +6,6 @@ source "https://rubygems.org"
 
 # gem "rails"
 gem 'sinatra'
-gem 'sqlite3'
 gem 'activerecord', '~> 5.2', '>= 5.2.2.1'
 gem 'rake'
 gem 'pry'
@@ -16,3 +15,9 @@ gem 'require_all'
 gem 'bcrypt'
 gem 'rack-flash3'
 gem 'rb-readline'
+gem 'pg'
+
+
+group :development do
+  gem 'sqlite3'
+end
