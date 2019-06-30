@@ -15,9 +15,12 @@ gem 'require_all'
 gem 'bcrypt'
 gem 'rack-flash3'
 gem 'rb-readline'
-gem 'pg'
 
 
 group :development do
   gem 'sqlite3'
+end
+
+group :production do
+  gem 'pg'
 end
