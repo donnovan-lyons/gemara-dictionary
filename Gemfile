@@ -10,13 +10,12 @@ gem 'bcrypt'
 gem 'rack-flash3'
 gem 'rb-readline'
 
-
-group :test, :development do
-  gem 'sqlite3'
-  gem 'shotgun'
-  gem 'pry'
+group :development, :test do
+    gem 'sqlite3'
+    gem 'shotgun'
+    gem 'pry'
 end
 
 group :production do
-  gem 'pg'
+    gem 'pg'
 end
