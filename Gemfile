@@ -8,17 +8,17 @@ source "https://rubygems.org"
 gem 'sinatra'
 gem 'activerecord', '~> 5.2', '>= 5.2.2.1'
 gem 'rake'
-gem 'pry'
 gem 'sinatra-activerecord'
-gem 'shotgun'
 gem 'require_all'
 gem 'bcrypt'
 gem 'rack-flash3'
 gem 'rb-readline'
 
 
-group :development do
+group :test, :development do
   gem 'sqlite3'
+  gem 'shotgun'
+  gem 'pry'
 end
 
 group :production do
