@@ -5,7 +5,7 @@ class CreateWords < ActiveRecord::Migration[5.2]
       t.string :translation_one
       t.string :translation_two
       t.string :translation_three
-      t.string :table_id
+      t.integer :table_id
     end
   end
 end
