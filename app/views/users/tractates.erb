@@ -1,7 +1,7 @@
 <h1>Tractates</h1>
 
 <ul>
-<% @user.tractates.each do |tractate| %>
+<% @user.tractates.uniq.each do |tractate| %>
   <li>
     <a href="tractates/<%= tractate.slug %>"><%= tractate.name %></a>
   </li>
