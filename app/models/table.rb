@@ -4,7 +4,9 @@ class Table < ActiveRecord::Base
   has_many :words
 
   def slug
-    "#{self.tractate.name}-#{self.title.gsub(" ","-").downcase}-#{self.user_id}"
+    tractate_slug = self.tractate.name.gsub(" ","-").downcase
+    title_slug = self.title.gsub(" ","-").downcase
+    "#{tractate_slug}-#{title_slug}-#{self.user_id}"
   end
 
   def self.find_by_slug(slug)
