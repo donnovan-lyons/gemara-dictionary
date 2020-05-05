@@ -63,11 +63,11 @@ class UsersController < ApplicationController
      @user = User.find(params[:id])
      if logged_in?
        if authorized?(@user.id)
-         user.delete_all_words_and_tables
-         user.delete
-         session.clear
-         flash[:message] = "User account successfully deleted."
-         redirect "/"
+        @user.delete_all_words_and_tables
+        @user.delete  
+        session.clear
+        flash[:message] = "User account successfully deleted."
+        redirect "/"
        else
          erb :'/sessions/authorization'
        end

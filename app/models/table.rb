@@ -4,9 +4,13 @@ class Table < ActiveRecord::Base
   has_many :words
 
   def slug
-    tractate_slug = self.tractate.name.gsub(" ","-").downcase
     title_slug = self.title.gsub(" ","-").downcase
-    "#{tractate_slug}-#{title_slug}-#{self.user_id}"
+    if self.tractate
+      tractate_slug = self.tractate.name.gsub(" ","-").downcase
+      "#{tractate_slug}-#{title_slug}-#{self.user_id}"
+    else
+      "miscellaneous-#{title_slug}-#{self.user_id}"
+    end
   end
 
   def self.find_by_slug(slug)

@@ -7,7 +7,7 @@
 <ul>
 <% @user.tables.each do |table| %>
   <li>
-    <a href="tables/<%= table.slug %>"><%= table.tractate.name %>: <%= table.title %></a>
+    <a href="tables/<%= table.slug %>"><%= table.tractate ? table.tractate.name + ":"  : nil %><%= table.title %></a>
   </li>
 <% end %>
 </ul>
