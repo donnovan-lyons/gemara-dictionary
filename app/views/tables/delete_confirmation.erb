@@ -1,4 +1,4 @@
-Are you sure you want to delete <%= @table.tractate.name %>: <%= @table.title%>?
+Are you sure you want to delete <%= table.tractate ? table.tractate.name + ": "  : nil %>?
 
 <form action="/users/<%= @user.id %>/tables/<%= @table.slug %>" id ="table-yes" method="POST" >
   <input type="hidden" id="hidden" name="_method" value="delete">

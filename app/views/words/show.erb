@@ -4,7 +4,7 @@
   <div class="card" style="width: 18rem;">
     <div class="card-body">
       <h5 class="card-title">Found in Table: <%= word.table.title %></h5>
-      <h6 class="card-subtitle mb-2 text-muted">Tractate: <%= word.table.tractate.name %></h6>
+      <h6 class="card-subtitle mb-2 text-muted">Tractate: <%= word.table.tractate ? word.table.tractate.name : "None" %></h6>
       <p class="card-text">Translated as:
         <% if !word.translation_one.empty? %>
           1. <%= word.translation_one %>

@@ -1,10 +1,10 @@
-<% tables = Table.public_tables.sort_by {|table| table.tractate.name} %>
+<% tables = Table.public_tables.sort_by {|table| table.tractate ? table.tractate.name : table.title} %>
 
 <ul>
 <% tables.each do |table| %>
   <li>
     <a href="/tables/<%= table.slug %>">
-      <%= table.tractate ? table.tractate.name + ":"  : nil %><%= table.title %>
+      <%= table.tractate ? table.tractate.name + ": "  : nil %><%= table.title %>
     </a>
   </li>
 <% end %>
