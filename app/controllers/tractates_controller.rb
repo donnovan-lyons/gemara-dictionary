@@ -14,6 +14,7 @@ class TractatesController  < ApplicationController
     @user = User.find(params[:id])
     if logged_in?
       if authorized?(@user.id)
+        @tractates = @user.tractates.uniq.sort_by
         erb :'users/tractates'
       else
         erb :'/sessions/failure'
@@ -28,6 +29,11 @@ class TractatesController  < ApplicationController
     if logged_in?
       if authorized?(@user.id)
         @tractate = Tractate.find_by_slug(params[:slug])
+        @tables = @user.tables.select do |table| 
+          if table.tractate
+            table.tractate.name == @tractate.name
+          end
+        end
         erb :"/users/tractates_show"
       else
         erb :'/sessions/authorization'

@@ -1,7 +1,7 @@
 <h1>My <%= @tractate.name %> Tables</h1>
 
 <ul>
-<% @tractate.tables.each do |table| %>
+<% @tables.each do |table| %>
   <li>
     <a href="/users/<%= @user.id %>/tables/<%= table.slug %>"><%= table.title %></a>
   </li>
