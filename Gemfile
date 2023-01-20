@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 # gem "rails"
 gem 'sinatra'
-gem 'activerecord', '~> 5.2', '>= 5.2.2.1'
+gem 'activerecord', '~> 6.1'
 gem 'rake'
 gem 'sinatra-activerecord'
 gem 'require_all'
